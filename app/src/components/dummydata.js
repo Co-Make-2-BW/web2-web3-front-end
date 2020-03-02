@@ -22,8 +22,6 @@ const data = [{
     upvotes: 4,
     downvotes: 5,
     resolved: false
-}, {
-
 }]
 
 export default data;
