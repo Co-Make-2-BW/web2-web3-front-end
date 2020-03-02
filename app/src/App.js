@@ -4,6 +4,9 @@ import Login from './components/Login';
 import CardList from './components/CardList';
 import {Switch, Route} from 'react-router-dom';
 
+import Issue from './components/Issue';
+import UpdateForm from './components/UpdateForm';
+
 function App() {
   return (
     <div className="App">
@@ -12,6 +15,8 @@ function App() {
 
       <Switch>
         <Route exact path = '/dash' component = {CardList}/>
+        <Route exact path = '/issues/:id' component = {Issue}/>
+        <Route exact path = '/update/:id' component = {UpdateForm}/>
         <Route path = '/' component = {Login}/>
       </Switch>
     </div>
