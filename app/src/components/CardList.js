@@ -29,7 +29,7 @@ export default function CardList (props) {
 
     return (
         <Cardlist>
-            <p>This box is the cardlist</p>
+            <p>This box is the cardlist Landing Page!</p>
             {cardData.map((item, index) => (
                 <Card data = {item} key = {index}/>
             ))}
