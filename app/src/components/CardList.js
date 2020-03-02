@@ -21,7 +21,7 @@ export default function CardList (props) {
     useEffect(() => {
         axios.post('https://reqres.in/api/users', data)
         .then(res => {
-            console.log(res);
+            console.log('axios CardList', res);
             setCardData(res.data);
         })
         .catch(err => console.log(err))
@@ -29,7 +29,7 @@ export default function CardList (props) {
 
     return (
         <Cardlist>
-            <p>This box is the cardlist</p>
+            <p>This box is the cardlist Landing Page!</p>
             {cardData.map((item, index) => (
                 <Card data = {item} key = {index}/>
             ))}
