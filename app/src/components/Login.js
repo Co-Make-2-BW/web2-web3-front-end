@@ -29,12 +29,17 @@ const Login = (props) => {
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
         axios.post('https://reqres.in/api/users', values).then(res => {
-            console.log('response from posting', res.data);
+            if (res.data) {
+                console.log('response from posting', res.data);
+                window.location.href = '/dash';
+            } else {
+                alert('login failed');
+            }
         }).catch(err => console.log(err))
         
     }
 
-    console.log('user', useform.watch('username'), 'pw', useform.watch('password'));
+    // console.log('user', useform.watch('username'), 'pw', useform.watch('password'));
 
     return (
 
