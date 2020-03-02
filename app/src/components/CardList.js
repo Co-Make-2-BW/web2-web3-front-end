@@ -7,12 +7,14 @@ import axios from 'axios';
 
 const Cardlist = styled.div`
 border: solid black 2px;
-display: flex;
+/* display: flex; */
 flex-direction: column;
-// flex-wrap: wrap;
-// justify-content: space-evenly;
+flex-wrap: wrap;
+justify-content: space-evenly;
 align-items: center;
+text-decoration: none;
 `;
+
 
 export default function CardList (props) {
 
@@ -31,7 +33,9 @@ export default function CardList (props) {
         <Cardlist>
             <p>This box is the cardlist Landing Page!</p>
             {cardData.map((item, index) => (
-                <Card data = {item} key = {index}/>
+                <Link key={index.id} to={`/issues/${item.id}`}>
+                    <Card data = {item} key = {index}/>
+                </Link>
             ))}
             <Link to = '/'>
             <button>Home</button>

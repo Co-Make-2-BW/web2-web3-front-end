@@ -17,8 +17,6 @@ export default function IssueCard (props) {
             <p>Description: {props.data.desc}</p>
             <p>Upvotes: {props.data.upvotes}/Downvotes: {props.data.downvotes}</p>
             <p>Issue Status: {props.data.resolved}</p>
-            <button>Edit/Update</button>
-            <button>Delete/Resolved</button>
         </Card>
     );
 
