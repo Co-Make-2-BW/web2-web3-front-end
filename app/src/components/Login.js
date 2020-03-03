@@ -50,13 +50,13 @@ const Login = (props) => {
             <Flexdiv>
                 <label htmlFor = 'username'>Username</label>
                 <input htmlFor = 'username' name = 'username' ref = {useform.register({ required: true })} />
-                {useform.errors.username && <p>Username is required!</p>}
+                {useform.errors.username && <p className='loginError'>Username is required!</p>}
             </Flexdiv>
 
             <Flexdiv>
                 <label htmlFor = 'password'>Password</label>
                 <input htmlFor = 'password' name = 'password' ref = {useform.register({ required: true })} type = 'password'/>
-                {useform.errors.password && <p>Password is required!</p>}
+                {useform.errors.password && <p className='loginError'>Password is required!</p>}
             </Flexdiv>
 
             <Button type = 'submit'>Login</Button>
