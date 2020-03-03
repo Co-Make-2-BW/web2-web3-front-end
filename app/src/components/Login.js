@@ -28,11 +28,11 @@ const Login = (props) => {
     // console.log('useform objects = ', useform);
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
-        axios.post('https://comake2.herokuapp.com/api/auth/login', values).then(res => {
+        axios.post('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/auth/login', values).then(res => {
             if (res.data) {
                 console.log('response from posting', res.data);
-                localStorage('token', res.data.token);
-                localStorage('user_id', res.data.user_id);
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('user_id', res.data.user_id);
                 window.location.href = '/dash';
             } else {
                 alert('login failed');
@@ -43,7 +43,7 @@ const Login = (props) => {
 
     const onRegister = (values) => {
         console.log('onRegister values', values);
-        axios.post('https://comake2.herokuapp.com/api/auth/register', values).then(res => {
+        axios.post('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/auth/register', values).then(res => {
             if (res.data) {
                 console.log('response from posting', res.data);
                 onSubmit(values);
@@ -84,3 +84,7 @@ const Login = (props) => {
 }
 
 export default Login;
+
+/*
+
+*/
