@@ -22,24 +22,25 @@ margin: 2%;
 `;
 
 
-const Login = (props) => {
+const Login = () => {
 
     const useform = useForm();
-    // console.log('useform objects = ', useform);
+    console.log('useform objects = ', useform);
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
-        axios.post('https://reqres.in/api/users', values).then(res => {
-            if (res.data) {
-                console.log('response from posting', res.data);
-                window.location.href = '/dash';
-            } else {
-                alert('login failed');
-            }
-        }).catch(err => console.log(err))
+        axios
+        .post('https://comake2.herokuapp.com/api/auth/login', values)
+        .then(res => {
+            console.log('response from posting', res.data);
+            window.localStorage.setItem('token', res.data.token)
+        })
+        .catch(err => console.log(err))
         
     }
 
     // console.log('user', useform.watch('username'), 'pw', useform.watch('password'));
+
+    
 
     return (
 
