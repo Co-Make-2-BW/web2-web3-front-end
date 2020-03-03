@@ -28,10 +28,25 @@ const Login = (props) => {
     // console.log('useform objects = ', useform);
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
-        axios.post('https://reqres.in/api/users', values).then(res => {
+        axios.post('https://comake2.herokuapp.com/api/auth/login', values).then(res => {
             if (res.data) {
                 console.log('response from posting', res.data);
+                localStorage('token', res.data.token);
+                localStorage('user_id', res.data.user_id);
                 window.location.href = '/dash';
+            } else {
+                alert('login failed');
+            }
+        }).catch(err => console.log(err))
+        
+    }
+
+    const onRegister = (values) => {
+        console.log('onRegister values', values);
+        axios.post('https://comake2.herokuapp.com/api/auth/register', values).then(res => {
+            if (res.data) {
+                console.log('response from posting', res.data);
+                onSubmit(values);
             } else {
                 alert('login failed');
             }
@@ -60,6 +75,7 @@ const Login = (props) => {
             </Flexdiv>
 
             <Button type = 'submit'>Login</Button>
+            <Button onClick = {useform.handleSubmit(onRegister)} >Register</Button>
 
         </Form>
 

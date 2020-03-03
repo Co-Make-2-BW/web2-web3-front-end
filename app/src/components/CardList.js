@@ -18,7 +18,7 @@ text-decoration: none;
 
 export default function CardList (props) {
 
-    const [cardData, setCardData]  = useState([]);
+    const [cardData, setCardData]  = useState(data);
 
     useEffect(() => {
         axios.post('https://reqres.in/api/users', data)
