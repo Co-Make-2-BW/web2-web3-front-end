@@ -16,16 +16,16 @@ align-items: center;
 
 export default function CardList (props) {
 
-    const [cardData, setCardData]  = useState([]);
+    const [cardData, setCardData]  = useState(data);
 
-    useEffect(() => {
-        axios.post('https://reqres.in/api/users', data)
-        .then(res => {
-            console.log(res);
-            setCardData(res.data);
-        })
-        .catch(err => console.log(err))
-    }, []);
+    // useEffect(() => {
+    //     axios.get('https://comake2.herokuapp.com/api/posts')
+    //     .then(res => {
+    //         console.log(res);
+    //         setCardData(res.data);
+    //     })
+    //     .catch(err => console.log(err))
+    // }, []);
 
     return (
         <Cardlist>
