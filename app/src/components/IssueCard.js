@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -11,6 +12,7 @@ export default function IssueCard (props) {
 const [isUser, setIsUser] = useState(false);
 const [isEditing, setIsEditing] = useState(false);
 const [data, setData] = useState(props.data);
+const [changes, setChanges] = useState();
 
 useEffect(() => {
 // console.log(data)
@@ -33,13 +35,28 @@ const editCard = () => {
     setIsEditing(!isEditing);
 }
 
+// console.log('edit', data.id)
+const saveEdit = event => {
+    event.preventDefault();
+    const token = localStorage.getItem('token')
+    axios
+    .put(`https://comake2.herokuapp.com/api/posts/${data.id}`, data, {
+        headers: { 
+            Authorization: token 
+    }
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+}
+
 
 const changeHandler = event => {
     setData({
         ...data,
         [event.target.name]: event.target.value
     })
-    // console.log(event.target)
+    console.log('change handler', event.target)
 }
 
 const deleteHandler = event => {
@@ -63,7 +80,7 @@ const deleteHandler = event => {
                 <label>Description:</label>
                 <input
                     type='text'
-                    name='title'
+                    name='desc'
                     value={data.desc}
                     onChange={event => changeHandler(event)}
                 />
@@ -76,7 +93,7 @@ const deleteHandler = event => {
                         'resolved': !data.resolved
                     })
                 }}>{data.resolved ? ('Issue Resolved') : ('Not Resolved')}</button>
-                <button type='submit'>Submit Edit</button>
+                <button onClick={saveEdit} type='submit'>Submit Edit</button>
 
             </form>
             </>

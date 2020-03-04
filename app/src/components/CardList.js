@@ -1,5 +1,5 @@
 import React, {useState, useEffect, createContext} from 'react';
-import data from './dummydata';
+// import data from './dummydata';
 import Card from './IssueCard';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
@@ -26,9 +26,10 @@ export default function CardList (props) {
 
     useEffect(() => {
 
-        axios.get('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/posts')
+        axios
+        .get('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/posts')
         .then(res => {
-            // console.log(res.data);
+            console.log(res.data);
             setCardData(res.data);
         })
         .catch(err => console.log(err))
