@@ -22,18 +22,15 @@ margin: 2%;
 `;
 
 
-const Login = () => {
+const Login = (props) => {
 
-    const useform = useForm();
+    const useform = useForm(props);
     console.log('useform objects = ', useform);
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
         axios
         .post('https://comake2.herokuapp.com/api/auth/login', values)
-        .then(res => {
-            console.log('response from posting', res.data);
-            window.localStorage.setItem('token', res.data.token)
-        })
+        .then(res => console.log(res))
         .catch(err => console.log(err))
         
     }

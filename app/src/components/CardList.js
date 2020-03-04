@@ -21,7 +21,8 @@ export default function CardList (props) {
     const [cardData, setCardData]  = useState([]);
 
     useEffect(() => {
-        axios.post('https://reqres.in/api/users', data)
+        axios
+        .get('https://comake2.herokuapp.com/api/posts')
         .then(res => {
             console.log('axios CardList', res);
             setCardData(res.data);
