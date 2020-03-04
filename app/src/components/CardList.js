@@ -37,9 +37,9 @@ export default function CardList (props) {
                 <button onClick = {() => {localStorage.clear()}}>Logout</button>
                 </Link>
             {cardData.map((item, index) => (
-                <Link key={index.id} to={`/issues/${item.id}`}>
+                // <Link key={index.id} to={`/issues/${item.id}`}>
                     <Card data = {item} key = {index}/>
-                </Link>
+                // </Link>
             ))}
             <Link to = '/'>
             <button>Home</button>
