@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -39,12 +39,8 @@ const editCard = () => {
 const saveEdit = event => {
     event.preventDefault();
     const token = localStorage.getItem('token')
-    axios
-    .put(`https://comake2.herokuapp.com/api/posts/${data.id}`, data, {
-        headers: { 
-            Authorization: token 
-    }
-    })
+    axiosWithAuth()
+    .put(`https://comake2.herokuapp.com/api/posts/${data.id}`, data)
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
