@@ -24,8 +24,8 @@ margin: 2%;
 
 const Login = (props) => {
 
-    const useform = useForm();
-    // console.log('useform objects = ', useform);
+    const useform = useForm(props);
+    console.log('useform objects = ', useform);
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
         axios.post('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/auth/login', values).then(res => {
@@ -55,6 +55,8 @@ const Login = (props) => {
     }
 
     // console.log('user', useform.watch('username'), 'pw', useform.watch('password'));
+
+    
 
     return (
 

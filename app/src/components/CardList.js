@@ -21,6 +21,7 @@ export default function CardList (props) {
     const [cardData, setCardData]  = useState([]);
 
     useEffect(() => {
+
         axios.get('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/posts')
         .then(res => {
             console.log(res.data);
