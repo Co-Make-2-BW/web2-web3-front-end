@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import {ContextData} from './CardList';
 import IssueCard from './IssueCard'
 
 
-function Issue (props) {
-    console.log('issue props', props)
+function Issue () {
+    console.log('context data', ContextData)
+
+    const value = useContext(ContextData);
+    console.log('value', value)
 
     const history = useHistory();
     const handleUpdate = e => {

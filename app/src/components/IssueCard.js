@@ -13,7 +13,7 @@ const [isEditing, setIsEditing] = useState(false);
 const [data, setData] = useState(props.data);
 
 useEffect(() => {
-console.log(data)
+// console.log(data)
 }, [data])
 
 
@@ -44,7 +44,7 @@ const changeHandler = event => {
 
 const deleteHandler = event => {
     event.preventDefault();
-    console.log('deleted')
+    // console.log('deleted')
 }
 
     return (
@@ -83,7 +83,7 @@ const deleteHandler = event => {
 
             ) : 
             (<><p>Created on: {props.data.created_at}</p>
-            <p>Created by: {props.data.creator_id}</p>
+            <p>Created by: {props.data.creator_name}</p>
             <h3>Card title: {props.data.title}</h3>
             <p>Description: {props.data.desc}</p>
             <p>Upvotes: {props.data.upvotes}/Downvotes: {props.data.downvotes}</p>

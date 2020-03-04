@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createContext} from 'react';
 import data from './dummydata';
 import Card from './IssueCard';
 import styled from 'styled-components';
@@ -15,36 +15,43 @@ align-items: center;
 text-decoration: none;
 `;
 
+export const ContextData = createContext();
+
 
 export default function CardList (props) {
 
     const [cardData, setCardData]  = useState([]);
 
+
+
     useEffect(() => {
 
         axios.get('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/posts')
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             setCardData(res.data);
         })
         .catch(err => console.log(err))
     }, []);
 
     return (
-        <Cardlist>
-            <p>This box is the cardlist Landing Page!</p>
+        <ContextData.Provider value={cardData}>
+            <Cardlist>
+                <p>This box is the cardlist Landing Page!</p>
+                    <Link to = '/'>
+                    <button onClick = {() => {localStorage.clear()}}>Logout</button>
+                    </Link>
+                    {/* add issue form */}
+                {cardData.map((item, index) => (
+                    // <Link key={index.id} to={`/issues/${item.id}`}>
+                        <Card data = {item} key = {index}/>
+                    // </Link>
+                ))}
                 <Link to = '/'>
-                <button onClick = {() => {localStorage.clear()}}>Logout</button>
+                <button>Home</button>
                 </Link>
-            {cardData.map((item, index) => (
-                // <Link key={index.id} to={`/issues/${item.id}`}>
-                    <Card data = {item} key = {index}/>
-                // </Link>
-            ))}
-            <Link to = '/'>
-            <button>Home</button>
-            </Link>
-        </Cardlist>
+            </Cardlist>
+        </ContextData.Provider>
     )
 
 }
