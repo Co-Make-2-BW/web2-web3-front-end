@@ -46,6 +46,7 @@ const editCard = () => {
 }
 
 // console.log('edit', data.id)
+
 const saveEdit = event => {
     event.preventDefault();
     
@@ -55,9 +56,12 @@ const saveEdit = event => {
     .put(`/api/posts/${props.data.id}`, data)
     .then(res => {
         console.log('put issue card', res.data)
-        
+        editCard()
     })
     .catch(err => console.log(err))
+    .finally(()=>{
+        appRefresh()
+    })
 
 }
 
@@ -68,15 +72,15 @@ const changeHandler = event => {
         [event.target.name]: event.target.value
     })
     console.log('change handler', event.target)
+    appRefresh()
 }
 
 const deleteHandler = event => {
     event.preventDefault();
-    // console.log('deleted', props.data.id)
     axiosWithAuth()
     .delete(`/api/posts/${props.data.id}`)
     .then(res => {
-        console.log('axios delete',res)
+        // console.log('axios delete',res)
         alert(res.data.message)
     })
     .catch(err => console.log(err))
@@ -131,7 +135,7 @@ const deleteHandler = event => {
             <p>Created on: {props.data.created_at}</p>
             </>)}
             {isUser && (<><button onClick={()=>{editCard()}} >
-                {isEditing ? ('Abort Edit') : ('edit')}
+                {isEditing ? ('Cancel Edit') : ('Edit')}
             </button>
             <button onClick={event => deleteHandler(event)}>Delete</button></>)}
         </Card>

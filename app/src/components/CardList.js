@@ -48,11 +48,11 @@ export default function CardList (props) {
                 {/* <p>This box is the cardlist Landing Page!</p> */}
 
                     <Link to = '/'>
-                    <button>Home</button>
+                    <button className='buttons'>Home</button>
                     </Link>
 
                     <Link to = '/'>
-                    <button onClick = {() => {localStorage.clear()}}>Logout</button>
+                    <button className='buttons' onClick = {() => {localStorage.clear()}}>Logout</button>
                     </Link>
 
                     <UpdateForm/>
