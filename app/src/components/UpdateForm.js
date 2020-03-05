@@ -13,7 +13,9 @@ const [data, setData] = useState({
     state: '',
     zipcode: '',
     creator_id: localStorage.getItem('user_id'),
-    resolved: false
+    resolved: false,
+    upvotes: 1,
+    downvotes: 0,
 })
 
 const submitIssue = event => {
@@ -40,7 +42,7 @@ const changeHandler = event => {
     
     return (
         <>
-        <h2>Create Issue</h2>
+        <h2>Create New Issue</h2>
         <form onSubmit={submitIssue}>
         <label>Card title:</label><br/>
                 <input

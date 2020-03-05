@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { ContextData } from '../context/contextData';
 import styled from 'styled-components';
 
 const Card = styled.div`
 border: solid black 1px;
-width: 45%;
+width: 40%;
 padding: 20px;
 margin-bottom: 5px;
 `;
@@ -21,7 +22,7 @@ const [data, setData] = useState({
     city: "Morristown",
     state: "TN"
 });
-// const [changes, setChanges] = useState();
+const { appRefresh } = useContext(ContextData)
 
 useEffect(() => {
 // console.log(data)
@@ -71,7 +72,17 @@ const changeHandler = event => {
 
 const deleteHandler = event => {
     event.preventDefault();
-    // console.log('deleted')
+    // console.log('deleted', props.data.id)
+    axiosWithAuth()
+    .delete(`/api/posts/${props.data.id}`)
+    .then(res => {
+        console.log('axios delete',res)
+        alert(res.data.message)
+    })
+    .catch(err => console.log(err))
+    .finally(()=>{
+        appRefresh()
+    })
 }
 
     return (
@@ -79,23 +90,25 @@ const deleteHandler = event => {
             {isEditing ? (
             <>
             <form>
-                <label>Card title:</label>
+                <label>Card title:</label><br/>
                 <input
                     type='text'
                     name='title'
+                    style={{ width: "70%", height: '17px' }}
                     value={data.title}
                     onChange={event => changeHandler(event)}
-                />
+                /><br/>
 
-                <label>Description:</label>
+                <label>Description:</label><br/>
                 <input
                     type='text'
                     name='desc'
+                    style={{ width: "70%", height: '17px' }}
                     value={data.desc}
                     onChange={event => changeHandler(event)}
-                />
+                /><br/>
 
-                <label>Issue Status:</label>
+                <label>Issue Status:</label><br/>
                 <button onClick={(event)=>{
                     event.preventDefault();
                     setData({
