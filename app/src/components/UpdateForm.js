@@ -42,7 +42,7 @@ const changeHandler = event => {
     
     return (
         <>
-        <h2>Create Issue</h2>
+        <h2>Create New Issue</h2>
         <form onSubmit={submitIssue}>
         <label>Card title:</label><br/>
                 <input
