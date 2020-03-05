@@ -4,15 +4,24 @@ import styled from 'styled-components';
 
 const Card = styled.div`
 border: solid black 1px;
-width: 30%;
+width: 45%;
+padding: 20px;
+margin-bottom: 5px;
 `;
 
 export default function IssueCard (props) {
 // console.log(props)
 const [isUser, setIsUser] = useState(false);
 const [isEditing, setIsEditing] = useState(false);
-const [data, setData] = useState(props.data);
-const [changes, setChanges] = useState();
+const [data, setData] = useState({
+    title: props.data.title,
+    desc: props.data.desc,
+    resolved: props.data.resolved,
+    zipcode: "37813",
+    city: "Morristown",
+    state: "TN"
+});
+// const [changes, setChanges] = useState();
 
 useEffect(() => {
 // console.log(data)
@@ -38,10 +47,15 @@ const editCard = () => {
 // console.log('edit', data.id)
 const saveEdit = event => {
     event.preventDefault();
+    
+    console.log(data)
     const token = localStorage.getItem('token')
     axiosWithAuth()
-    .put(`https://comake2.herokuapp.com/api/posts/${data.id}`, data)
-    .then(res => console.log(res))
+    .put(`/api/posts/${props.data.id}`, data)
+    .then(res => {
+        console.log('put issue card', res.data)
+        
+    })
     .catch(err => console.log(err))
 
 }
@@ -95,15 +109,18 @@ const deleteHandler = event => {
             </>
 
             ) : 
-            (<><p>Created on: {props.data.created_at}</p>
-            <p>Created by: {props.data.creator_name}</p>
+            (<>
             <h3>Card title: {props.data.title}</h3>
             <p>Description: {props.data.desc}</p>
             <p>Upvotes: {props.data.upvotes}/Downvotes: {props.data.downvotes}</p>
-            <p>Issue Status: {props.data.resolved}</p></>)}
+            <p>Issue Status: {props.data.resolved}</p>
+            <p>Created by: {props.data.creator_name}</p>
+            <p>Created on: {props.data.created_at}</p>
+            </>)}
             {isUser && (<><button onClick={()=>{editCard()}} >
                 {isEditing ? ('Abort Edit') : ('edit')}
-            </button><button onClick={event => deleteHandler(event)}>Delete</button></>)}
+            </button>
+            <button onClick={event => deleteHandler(event)}>Delete</button></>)}
         </Card>
     );
 };

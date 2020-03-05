@@ -29,7 +29,7 @@ const Login = (props) => {
     const onSubmit = (values) => {
         console.log('onSubmit values', values);
         axios
-        .post('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/auth/login', values).then(res => {
+        .post('https://comake2.herokuapp.com/api/auth/login', values).then(res => {
             if (res.data) {
                 // console.log('response from posting', res.data);
                 localStorage.setItem('token', res.data.token);
@@ -45,7 +45,7 @@ const Login = (props) => {
     const onRegister = (values) => {
         console.log('onRegister values', values);
         axios
-        .post('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/auth/register', values).then(res => {
+        .post('https://comake2.herokuapp.com/api/auth/register', values).then(res => {
             if (res.data) {
                 // console.log('response from posting', res.data);
                 onSubmit(values);

@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
     //create new instance of axios with config opj
     return axios.create({ 
         headers: {
-            authorization: token
+            Authorization: token
     },
     baseURL: 'https://comake2.herokuapp.com'
     })

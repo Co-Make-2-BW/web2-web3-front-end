@@ -1,9 +1,11 @@
-import React, {useState, useEffect, createContext} from 'react';
+import React, {useState, useEffect} from 'react';
 // import data from './dummydata';
 import Card from './IssueCard';
+import UpdateForm from './UpdateForm';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import { ContextData } from '../context/contextData';
 
 const Cardlist = styled.div`
 border: solid black 2px;
@@ -15,44 +17,57 @@ align-items: center;
 text-decoration: none;
 `;
 
-export const ContextData = createContext();
 
 
 export default function CardList (props) {
-
+    
     const [cardData, setCardData]  = useState([]);
-
-
-
+    const [refresh, setRefresh] = useState(false)
+    
+    
+   
+    
+    const appRefresh = () => {
+        setRefresh(!refresh)
+    }
+    
     useEffect(() => {
-
+        
         axios
-        .get('https://cors-anywhere.herokuapp.com/https://comake2.herokuapp.com/api/posts')
+        .get('https://comake2.herokuapp.com/api/posts')
         .then(res => {
-            console.log(res.data);
+            console.log(res);
             setCardData(res.data);
         })
         .catch(err => console.log(err))
-    }, []);
-
+    }, [refresh]);
+    
     return (
-        <ContextData.Provider value={cardData}>
+        <ContextData.Provider value={{cardData, setCardData, appRefresh,}} >
             <Cardlist>
                 <p>This box is the cardlist Landing Page!</p>
+
+                    <Link to = '/'>
+                    <button>Home</button>
+                    </Link>
+
+                    <Link to = '/add'>
+                    <button>Add Issue</button>
+                    </Link>
+
                     <Link to = '/'>
                     <button onClick = {() => {localStorage.clear()}}>Logout</button>
                     </Link>
-                    {/* add issue form */}
+
+                    <UpdateForm/>
                 {cardData.map((item, index) => (
-                    // <Link key={index.id} to={`/issues/${item.id}`}>
-                        <Card data = {item} key = {index}/>
-                    // </Link>
-                ))}
-                <Link to = '/'>
-                <button>Home</button>
-                </Link>
+                
+                    <Card data = {item} key = {index}/>
+                
+                    ))}
             </Cardlist>
         </ContextData.Provider>
     )
-
+    
 }
+// export const ContextData = createContext();

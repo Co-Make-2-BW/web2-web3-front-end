@@ -15,8 +15,8 @@ function App() {
 
       <Switch>
         <Route exact path = '/dash' component = {CardList}/>
-        <Route exact path = '/issues/:id' component = {Issue}/>
-        <Route exact path = '/update/:id' component = {UpdateForm}/>
+        {/* <Route exact path = '/issues/:id' component = {Issue}/> */}
+        <Route exact path = '/add' component = {UpdateForm}/>
         <Route path = '/' component = {Login}/>
       </Switch>
     </div>
