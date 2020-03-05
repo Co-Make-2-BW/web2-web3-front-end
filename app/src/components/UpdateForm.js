@@ -13,7 +13,9 @@ const [data, setData] = useState({
     state: '',
     zipcode: '',
     creator_id: localStorage.getItem('user_id'),
-    resolved: false
+    resolved: false,
+    upvotes: 1,
+    downvotes: 0,
 })
 
 const submitIssue = event => {

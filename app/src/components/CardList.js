@@ -45,14 +45,10 @@ export default function CardList (props) {
     return (
         <ContextData.Provider value={{cardData, setCardData, appRefresh,}} >
             <Cardlist>
-                <p>This box is the cardlist Landing Page!</p>
+                {/* <p>This box is the cardlist Landing Page!</p> */}
 
                     <Link to = '/'>
                     <button>Home</button>
-                    </Link>
-
-                    <Link to = '/add'>
-                    <button>Add Issue</button>
                     </Link>
 
                     <Link to = '/'>
@@ -60,11 +56,12 @@ export default function CardList (props) {
                     </Link>
 
                     <UpdateForm/>
+                    <div className='landing'>
+
                 {cardData.map((item, index) => (
-                
                     <Card data = {item} key = {index}/>
-                
                     ))}
+                    </div>
             </Cardlist>
         </ContextData.Provider>
     )
