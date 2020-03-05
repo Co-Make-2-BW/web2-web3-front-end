@@ -47,3 +47,19 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.buttons{
+  color: #EFE9F4;
+  background-color: #5863F8;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+.buttons:hover{
+  background-color: #EFE9F4;
+  color: #5863F8;
+  
+}
+.buttons:active{
+  background-color: red;
+  color: #5863F8;
+  
+}

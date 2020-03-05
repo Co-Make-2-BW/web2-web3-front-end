@@ -89,7 +89,7 @@ const changeHandler = event => {
                     onChange={changeHandler}
                 /><br/>
 
-                <button>Submit Issue</button>
+                <button className='buttons' >Submit Issue</button>
         </form>
         </>
     )
