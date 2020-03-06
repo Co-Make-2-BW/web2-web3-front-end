@@ -4,10 +4,12 @@ import { ContextData } from '../context/contextData';
 import styled from 'styled-components';
 
 const Card = styled.div`
-border: solid black 1px;
+border: solid #2C3130 1px;
 width: 40%;
 padding: 20px;
 margin-bottom: 5px;
+margin-top: 5px;
+background-color: #EFE9F4;
 `;
 
 export default function IssueCard (props) {
